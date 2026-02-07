@@ -364,7 +364,6 @@ border:none; background:none
     </div>
 </div>
 <script>
-    // مصفوفة البنود
     const surveyItems = [
         "جودة الخدمات المقدمة بشكل عام.",
         "دقة إنجاز المعاملات في الوقت المحدد.",
@@ -380,7 +379,6 @@ border:none; background:none
 
     const surveyBody = document.getElementById('surveyBody');
 
-    // مصفوفة القيم والتسميات
     const ratingOptions = [
         { val: 5, label: "ممتاز" },
         { val: 4, label: "جيد جداً" },
@@ -389,14 +387,11 @@ border:none; background:none
         { val: 1, label: "ضعيف" }
     ];
 
-    // توليد صفوف الجدول
     surveyItems.forEach((item, index) => {
         const questionIcon = '<i class="fas fa-caret-left text-success me-2 opacity-50"></i>';
-        
-        let row = `
-            <tr>
-                <td class="fw-bold col-id">${index + 1}</td>
-                <td class="text-end pe-3 col-criterion">${questionIcon} ${item}</td>`;
+        let row = `<tr>
+            <td class="fw-bold col-id">${index + 1}</td>
+            <td class="text-end pe-3 col-criterion">${questionIcon} ${item}</td>`;
         
         ratingOptions.forEach(option => {
             row += `
@@ -404,23 +399,19 @@ border:none; background:none
                     <div class="form-check d-flex justify-content-center">
                         <input class="form-check-input" type="radio" 
                                name="q${index + 1}" 
-                               value="${option.val}">
-                    </div>
+                               value="${option.val}"> 
+                               </div>
                 </td>`;
         });
-
         row += `</tr>`;
         surveyBody.innerHTML += row;
     });
 
-    // معالجة إرسال النموذج
     document.getElementById('customerSurveyForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
         const btn = document.getElementById('submitBtn');
         const originalBtnText = btn.innerHTML;
-        
-        // إظهار حالة الجاري الإرسال
         btn.disabled = true;
         btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> جاري الإرسال...';
 
@@ -428,14 +419,14 @@ border:none; background:none
 
         fetch(scriptURL, { method: 'POST', body: new FormData(this)})
             .then(response => {
-                alert('✅ تم استلام تقييمك بنجاح!\n\nنشكركم على وقتكم وتعاونكم معنا.');
+                alert('✅ تم استلام تقييمك بنجاح!');
                 this.reset();
                 btn.disabled = false;
                 btn.innerHTML = originalBtnText;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             })
             .catch(error => {
-                alert('❌ عذراً، حدث خطأ أثناء محاولة الإرسال.\n\nيرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى.');
+                alert('❌ حدث خطأ أثناء الإرسال.');
                 btn.disabled = false;
                 btn.innerHTML = originalBtnText;
             });
@@ -443,6 +434,7 @@ border:none; background:none
 </script>
 </body>
 </html>
+
 
 
 
