@@ -393,16 +393,17 @@ border:none; background:none
             <td class="fw-bold col-id">${index + 1}</td>
             <td class="text-end pe-3 col-criterion">${questionIcon} ${item}</td>`;
         
-        ratingOptions.forEach(option => {
-            row += `
-                <td data-label="${option.label}">
-                    <div class="form-check d-flex justify-content-center">
-                        <input class="form-check-input" type="radio" 
-                               name="q${index + 1}" 
-                               value="${option.val}"> 
-                               </div>
-                </td>`;
-        });
+  ratingOptions.forEach(option => {
+    row += `
+        <td data-label="${option.label}">
+            <div class="form-check d-flex justify-content-center">
+                <input class="form-check-input" type="radio" 
+                       name="q${index + 1}" 
+                       value="${option.val}">
+            </div>
+        </td>`;
+});
+
         row += `</tr>`;
         surveyBody.innerHTML += row;
     });
@@ -434,6 +435,7 @@ border:none; background:none
 </script>
 </body>
 </html>
+
 
 
 
