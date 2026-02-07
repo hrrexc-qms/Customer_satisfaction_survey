@@ -406,8 +406,8 @@ surveyItems.forEach((item, index) => {
                 <div class="form-check d-flex justify-content-center">
                     <input class="form-check-input" type="radio" 
                            name="q${index + 1}" 
-                           value="${option.val}" 
-                           ${option.val === 5 ? 'required' : ''}>
+                           value="${option.val}">
+                           // ${option.val === 5 ? 'required' : ''}>
                 </div>
             </td>`;
     });
@@ -447,6 +447,7 @@ surveyItems.forEach((item, index) => {
 </script>
 </body>
 </html>
+
 
 
 
