@@ -242,6 +242,33 @@ border:none; background:none
         color: #666;
     }
 }
+            /* تنسيق الفوتر الثابت */
+.footer-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+    border-top: 2px solid var(--brand-orange);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    z-index: 999;
+}
+.brand-footer {
+    color: #1a953e;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.dev-footer {
+    color: #faa61a;
+    font-size: 0.8em;
+    margin-top: 2px;
+}
+/* إضافة هامش سفلي للحاوية الرئيسية لضمان عدم تغطية المحتوى بالفوتر */
+body {
+    padding-bottom: 70px; 
+}
     </style>
 </head>
 <body>
@@ -358,11 +385,18 @@ border:none; background:none
             </form>
         </div>
     </div>
-    
-    <div class="text-center mt-3 mb-5">
-        <small class="text-muted">جميع الحقوق محفوظة لشركة الروضة للصرافة والتحويلات © 2026</small>
+
+</div>
+    <footer>
+    <div class="footer-container">
+    <div class="brand-footer">
+       شركة الروضة للصرافة والتحويلات المالية -2026 © 
+    </div>
+    <div class="dev-footer">
+        تصميم وتطوير: محمد أحمد الشرفي
     </div>
 </div>
+</footer>
 <script>
     const surveyItems = [
         "جودة الخدمات المقدمة بشكل عام.",
@@ -435,10 +469,3 @@ border:none; background:none
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
