@@ -454,8 +454,10 @@ body {
 
         fetch(scriptURL, { method: 'POST', body: new FormData(this)})
             .then(response => {
-                alert('✅ تم استلام تقييمك بنجاح!');
-                this.reset();
+// مثال باستخدام رسالة أكثر تفاعلية
+console.log("تم الإرسال بنجاح"); 
+// يفضل استخدام مكتبة UI لعرض تنبيه جميل بدلاً من alert()
+alert('شكراً لك! تم استلام ملاحظتك بنجاح، ونحن نقدر وقتك واهتمامك.');                this.reset();
                 btn.disabled = false;
                 btn.innerHTML = originalBtnText;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
