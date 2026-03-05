@@ -16,11 +16,12 @@
 
     <style>
         body {
-            background-color: #f4f7f6; /* خلفية هادئة للصفحة */
+            background-color: #f4f7f6; /* خلفية هادئة للصفحة - بقيت كما هي */
             font-family: "Cairo", sans-serif;
             padding-top: 30px;
-           direction: rtl;
+            direction: rtl;
             padding-bottom: 30px;
+            
         }
 
         /* تحسين مظهر البطاقة الرئيسية */
@@ -32,23 +33,40 @@
         }
 
         .card-header {
-            background: linear-gradient(45deg, #faa61a, #fbbd53); /* تدرج لوني بسيط */
-            color: white;
+            /* التعديل للأبيض مع حد سفلي برتقالي */
+            background-color: #ffffff; 
+            color: #1a953e; /* اللون الأخضر */
             padding: 1.5rem;
-            border-bottom: none;
+            border-bottom: 3px solid #faa619; /* اللون البرتقالي */
         }
-
+/* تنسيق إضافي للشعار والتجاوب */
+@media (max-width: 576px) {
+    .card-header {
+        text-align: center;
+        justify-content: center !important; /* توسيط المحتوى في الموبايل الصغير جداً */
+    }
+    .header-text {
+        text-align: center !important;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .header-logo img {
+        max-height: 60px; /* تصغير الشعار قليلاً في الموبايل */
+    }
+}
         /* تنسيق قسم المقدمة Hero */
         .hero {
             background-color: #ffffff;
             border-bottom: 1px solid #eee;
         }
         .company-name {
-            color: #1a953e;
+            /* التعديل للأخضر */
+            color: #1a953e; 
             font-weight: 700;
         }
         .intro-icon {
-            color: #faa61a;
+            /* التعديل للبرتقالي */
+            color: #faa619; 
             margin-left: 8px;
         }
 
@@ -56,15 +74,17 @@
         .input-group-text {
             background-color: #f8f9fa;
             border-color: #ced4da;
-            color: #1a953e; /* لون الأيقونات */
+            /* التعديل للأخضر */
+            color: #1a953e; 
         }
         .form-control, .form-select {
             border-color: #ced4da;
             padding: 0.6rem;
         }
         .form-control:focus, .form-select:focus {
-            border-color: #faa61a;
-            box-shadow: 0 0 0 0.25rem rgba(250, 166, 26, 0.25);
+            /* التعديل للبرتقالي عند التركيز */
+            border-color: #faa619; 
+            box-shadow: 0 0 0 0.25rem rgba(250, 166, 25, 0.25);
         }
         .form-label {
             font-weight: 600;
@@ -79,23 +99,24 @@
             overflow: hidden;
         }
         .table thead th {
-            background-color: #1a953e;
+            /* التعديل للأخضر */
+            background-color: #1a953e; 
             color: white;
             border: none;
             vertical-align: middle;
             font-weight: 600;
         }
-        /* تقليل عرض عمود الأسئلة */
+        /* تقليل عرض عمود الأسئلة ليتسع لحقل "أخرى" */
         .col-question {
-            width: 45%; /* التحكم في عرض عمود المعايير */
+            width: 35%; /* تم تقليل العرض ليتسع للعمود الجديد */
             text-align: right !important;
         }
         .col-id {
             width: 5%;
         }
-        /* تأثير عند مرور الماوس على الصفوف */
+        /* تأثير عند مرور الماوس على الصفوف - تم تعديله للأخضر الفاتح جداً */
         .table-hover tbody tr:hover {
-            background-color: #f1f8f3;
+            background-color: #f0f9f2; 
             transition: background-color 0.3s ease;
         }
         .table td {
@@ -104,40 +125,55 @@
 
         /* تنسيق قسم الملاحظات */
         .feedback-box {
-            background-color: #fffdf9;
+            background-color: #ffffff; 
             border-radius: 12px;
-            border: 2px solid #fdebd0;
+            border: 2px solid #e9ecef; 
         }
         .feedback-title {
-            color: #d38301;
+            /* التعديل للبرتقالي */
+            color: #faa619; 
             font-weight: 700;
         }
 
         /* زر الإرسال */
         .btn-submit {
-            background-color: #1a953e;
+            /* التعديل للأخضر */
+            background-color: #1a953e; 
             border: none;
             padding: 12px 40px;
             font-size: 1.1rem;
             font-weight: 600;
             border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(26, 149, 62, 0.3);
+            /* التعديل للظل الأخضر */
+            box-shadow: 0 4px 15px rgba(26, 149, 62, 0.3); 
             transition: all 0.3s ease;
         }
         .btn-submit:hover {
-            background-color: #147a32;
+            /* التعديل للأخضر الأغمق للتحويم */
+            background-color: #126e2d; 
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(26, 149, 62, 0.4);
+            box-shadow: 0 6px 20px rgba(26, 149, 62, 0.4); 
         }
         
         /* تحسينات للموبايل */
         @media (max-width: 768px) {
             .col-question {
-                width: 40%;
+                width: 100%;
                 font-size: 0.85rem;
             }
             .table thead th {
                 font-size: 0.8rem;
+            }
+            /* تحسين عرض حقل 'أخرى' في الموبايل */
+            #surveyTable td[data-label="أخرى"] {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            #surveyTable td[data-label="أخرى"]::before {
+                margin-bottom: 8px;
+            }
+            #surveyTable td[data-label="أخرى"] input {
+                width: 100%;
             }
         }
         .fas{
@@ -161,7 +197,8 @@ border:none; background:none
 
     #surveyTable tr {
         margin-bottom: 20px;
-        border: 1px solid #1a953e;
+        /* التعديل للأخضر */
+        border: 1px solid #1a953e; 
         border-radius: 15px;
         overflow: hidden;
         background: #fff;
@@ -181,9 +218,11 @@ border:none; background:none
 
     /* تنسيق خاص لعمود السؤال في الموبايل */
     #surveyTable td.col-criterion {
-        background-color: #f9fbf9;
+        /* التعديل للأخضر الفاتح جداً */
+        background-color: #f0f9f2; 
         font-weight: bold;
-        color: #1a953e;
+        /* التعديل للأخضر */
+        color: #1a953e; 
         display: block; /* ليأخذ السطر كاملاً */
         text-align: center !important;
     }
@@ -228,7 +267,8 @@ border:none; background:none
         text-align: center !important;
         background-color: #f8f9fa;
         font-weight: bold;
-        color: #1a953e;
+        /* التعديل للأخضر */
+        color: #1a953e; 
     }
 
     #surveyTable td.col-id {
@@ -251,17 +291,20 @@ border:none; background:none
     background-color: #ffffff;
     padding: 10px 0;
     text-align: center;
-    border-top: 2px solid var(--brand-orange);
+    /* التعديل للبرتقالي */
+    border-top: 2px solid #faa619; 
     box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
     z-index: 999;
 }
 .brand-footer {
-    color: #1a953e;
+    /* التعديل للأخضر */
+    color: #1a953e; 
     font-weight: bold;
     font-size: 0.9em;
 }
 .dev-footer {
-    color: #faa61a;
+    /* التعديل للبرتقالي */
+    color: #faa619; 
     font-size: 0.8em;
     margin-top: 2px;
 }
@@ -269,16 +312,64 @@ border:none; background:none
 body {
     padding-bottom: 70px; 
 }
+
+/* الإبقاء على نفس أسماء الكلاسات مع تغيير الألوان المطلوبة برمجياً */
+.text-mine-trust-blue {
+    color: #1a953e !important; /* أخضر */
+}
+.text-mine-trust-teal {
+    color: #faa619 !important; /* برتقالي */
+}
+.bg-mine-trust-blue {
+    background-color: #1a953e !important; /* أخضر */
+}
+.bg-mine-trust-teal {
+    background-color: #faa619 !important; /* برتقالي */
+}
+
+/* تنسيق فوتر الكارد */
+.card-footer-custom {
+    background-color: #ffffff; /* تم التعديل للأبيض بدلاً من الأزرق الفاتح */
+    border-top: 2px solid #faa619; /* تم إضافة حد برتقالي */
+    padding: 15px 25px;
+    color: #1a953e; /* اللون الأخضر */
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.contact-link {
+    color: #faa619; /* لون برتقالي للرقم */
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.contact-link:hover {
+    color: #1a953e; /* أخضر عند التحويم */
+    text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+    .card-footer-custom {
+        text-align: center;
+        flex-direction: column !important;
+        gap: 10px;
+    }
+}
     </style>
 </head>
 <body>
 
 <div class="container animated fadeIn">
     <div class="card">
-        <div class="card-header text-center">
-            <h4 class="mb-0"><i class="fas fa-poll-h me-2"></i> استبيان قياس رضا العملاء</h4>
-            <p class="mb-0 opacity-75" style="font-size: 0.9rem;">Customer Satisfaction Survey</p>
-        </div>
+       <div class="card-header d-flex justify-content-between align-items-center flex-wrap py-3 px-4">
+    <div class="header-text text-end">
+        <h4 class="mb-0"><i class="fas fa-poll-h me-2"></i> إستبيان قياس رضا العملاء</h4>
+    </div>
+
+    <div class="header-logo mt-2 mt-md-0">
+        <img src="logominetrust2026.png" alt="شعار الروضة" class="img-fluid" style="max-height: 75px; width: auto; object-fit: contain;">
+    </div>
+</div>
         
         <section class="hero py-4 px-3">
             <div class="container">
@@ -291,7 +382,7 @@ body {
                             نحن في <span class="company-name"><i class="fas fa-building me-1"></i> شركة الروضة للصرافة والتحويلات</span> - نسعى جاهدين لتقديم أفضل الخدمات. رأيكم يهمنا ويساهم في تحسين جودة خدماتنا لتلبية احتياجاتكم.
                         </p>
                         <p class="mb-0 text-muted fst-italic" style="font-size: 0.9rem;">
-                            <i class="fas fa-info-circle me-1 text-warning"></i> عزيزنا العميل: كلما زادت التفاصيل التي تقدمها، كان بإمكاننا فهم تجربتك بشكل أفضل. نشكر وقتك الثمين.
+                            <i class="fas fa-info-circle me-1 text-mine-trust-teal"></i> عزيزنا العميل: كلما زادت التفاصيل التي تقدمها، كان بإمكاننا فهم تجربتك بشكل أفضل. نشكر وقتك الثمين.
                         </p>
                     </div>
                 </div>
@@ -310,6 +401,15 @@ body {
                             <input type="text" name="customerName" class="form-control" placeholder="الاسم الثلاثي" required>
                         </div>
                     </div>
+                    
+                    <div class="col-md-6">
+                        <label class="form-label">رقم الهاتف <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                            <input type="tel" name="phone" class="form-control" id="phoneNumber" placeholder="مثال: 77xxxxxxx" maxlength="9" required>
+                        </div>
+                    </div>
+
                     <div class="col-md-6">
                         <label class="form-label">نشاط العميل</label>
                         <div class="input-group">
@@ -317,45 +417,41 @@ body {
                             <input type="text" name="activity" class="form-control" placeholder="مثال: تجاري، فردي...">
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-label">رقم الهاتف <span class="text-danger">*</span></label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
-                            <input type="tel" name="phone" class="form-control" id="phoneNumber" placeholder="مثال: 77xxxxxxx" required>
-                        </div>
-                    </div>
+                    
                     <div class="col-md-6">
                         <label class="form-label">الفرع المعني بالتقييم <span class="text-danger">*</span></label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                              <select class="form-select" name="branch" required>
-    <option selected disabled value="">اختر الفرع من القائمة</option>
-    <option value="الفرع الرئيسي">الفرع الرئيسي</option>
-    <option value="فرع جولة مأرب">فرع جولة مأرب</option>
-    <option value="فرع الزبيري">فرع الزبيري</option>
-    <option value="فرع الصافية">فرع الصافية</option>
-    <option value="فرع الجامعة">فرع الجامعة</option>
-    <option value="فرع الحديدة">فرع الحديدة</option>
-    <option value="فرع إب">فرع إب</option>
-    <option value="فرع عمران">فرع عمران</option>
-    <option value="فرع صعدة">فرع صعدة</option>
-</select>
+                                <option selected disabled value="">اختر الفرع من القائمة</option>
+                                <option value="الفرع الرئيسي">الفرع الرئيسي</option>
+                                <option value="فرع جولة مأرب">فرع جولة مأرب</option>
+                                <option value="فرع الزبيري">فرع الزبيري</option>
+                                <option value="فرع الصافية">فرع الصافية</option>
+                                <option value="فرع الجامعة">فرع الجامعة</option>
+                                <option value="فرع الحديدة">فرع الحديدة</option>
+                                <option value="فرع إب">فرع إب</option>
+                                <option value="فرع عمران">فرع عمران</option>
+                                <option value="فرع صعدة">فرع صعدة</option>
+                            </select>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="text-center mb-4">
-                     <h5 class="fw-bold text-dark"><i class="fas fa-list-check me-2 text-success"></i> بنود التقييم | Survey Items</h5>
-                     <p class="text-muted small">يرجى اختيار التقييم المناسب لكل بند (5 هو الأفضل)</p>
+                     <h5 class="fw-bold text-dark"><i class="fas fa-list-check me-2 text-mine-trust-blue"></i> بنود التقييم | Survey Items</h5>
+                     <p class="text-muted small">يرجى اختيار التقييم المناسب لكل بند (5 هو الأفضل) أو كتابة ملاحظتك</p>
                 </div>
-               
+                
               <div class="table-responsive survey-table-container mb-5">
     <table class="table table-bordered table-hover text-center mb-0" id="surveyTable">
         <thead>
             <tr>
                 <th rowspan="2" class="col-id"><i class="fas fa-hashtag"></i></th>
                 <th rowspan="2" class="col-question col-criterion text-end pe-3"><i class="fas fa-clipboard-list me-2"></i> المعايير / الأسئلة</th>
-                <th colspan="5"><i class="fas fa-star me-1 text-warning"></i> مستوى الرضا</th>
+                <th colspan="5"><i class="fas fa-star me-1 text-mine-trust-teal"></i> مستوى الرضا</th>
+                <th rowspan="2" style="width: 15%;"><i class="fas fa-pen me-1 text-mine-trust-teal"></i> أخرى</th>
             </tr>
             <tr style="font-size: 0.85rem;">
                 <th>5<br><span class="badge bg-success fw-normal">ممتاز</span></th>
@@ -382,10 +478,18 @@ body {
                         <i class="fas fa-paper-plane me-2"></i> إرسال التقييم
                     </button>
                 </div>
-            </form>
-        </div>
-    </div>
+           </form>
+        </div> <div class="card-footer-custom d-flex justify-content-between align-items-center flex-wrap">
+            <div class="footer-right">
+                <i class="fas fa-headset me-2 text-mine-trust-teal"></i>
+                للتواصل المباشر: 
+                <a href="tel:01234567" class="contact-link" dir="ltr">01-234567</a> </div>
 
+            <div class="footer-left text-muted fw-normal">
+                <span class="badge bg-light text-dark border">REC-QF-17-03/Rev02</span>
+            </div>
+        </div>
+</div>
 </div>
     <footer>
     <div class="footer-container">
@@ -393,7 +497,7 @@ body {
        شركة الروضة للصرافة والتحويلات المالية -2026 © 
     </div>
     <div class="dev-footer">
-        تصميم وتطوير: محمد أحمد الشرفي
+       تصميم وتطوير: محمد أحمد الشرفي
     </div>
 </div>
 </footer>
@@ -422,42 +526,81 @@ body {
     ];
 
     surveyItems.forEach((item, index) => {
-        const questionIcon = '<i class="fas fa-caret-left text-success me-2 opacity-50"></i>';
+        const questionIcon = '<i class="fas fa-caret-left text-mine-trust-blue me-2 opacity-50"></i>';
         let row = `<tr>
             <td class="fw-bold col-id">${index + 1}</td>
             <td class="text-end pe-3 col-criterion">${questionIcon} ${item}</td>`;
         
-  ratingOptions.forEach(option => {
-    row += `
-        <td data-label="${option.label}">
-            <div class="form-check d-flex justify-content-center">
-                <input class="form-check-input" type="radio" 
-                       name="q${index + 1}" 
-                       value="${option.val}">
-            </div>
-        </td>`;
-});
+        ratingOptions.forEach(option => {
+            row += `
+                <td data-label="${option.label}">
+                    <div class="form-check d-flex justify-content-center">
+                        <input class="form-check-input" type="radio" 
+                               name="q${index + 1}" 
+                               value="${option.val}" required>
+                    </div>
+                </td>`;
+        });
+
+        row += `
+            <td data-label="أخرى">
+                <input type="text" name="other_q${index + 1}" class="form-control form-control-sm" placeholder="ملاحظة...">
+            </td>
+        `;
 
         row += `</tr>`;
         surveyBody.innerHTML += row;
     });
 
+    // --- الإضافات الجديدة لحقل الهاتف وتحويل الأرقام ---
+
+    const phoneInput = document.getElementById('phoneNumber');
+    
+    // وظيفة تحويل الأرقام الهندية/العربية إلى إنجليزية
+    function convertToEnglishDigits(str) {
+        return str.replace(/[٠-٩]/g, function(d) {
+            return d.charCodeAt(0) - 1632;
+        });
+    }
+
+    // مراقبة الإدخال في حقل الهاتف لتحويل الأرقام ومنع الحروف
+    phoneInput.addEventListener('input', function(e) {
+        let val = convertToEnglishDigits(this.value);
+        this.value = val.replace(/[^0-9]/g, ''); // إبقاء الأرقام فقط
+    });
+
     document.getElementById('customerSurveyForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
+        // 1. التحقق من رقم الهاتف (9 أرقام ويبدأ ببادئة صحيحة)
+        const phoneVal = phoneInput.value;
+        const validPrefixes = ['77', '78', '73', '71', '70'];
+        const prefix = phoneVal.substring(0, 2);
+
+        if (phoneVal.length !== 9) {
+            alert('❌ عذراً، رقم الهاتف يجب أن يتكون من 9 أرقام تماماً.');
+            phoneInput.focus();
+            return;
+        }
+
+        if (!validPrefixes.includes(prefix)) {
+            alert('❌ عذراً، يجب أن يبدأ الرقم بـ (77, 78, 73, 71, 70).');
+            phoneInput.focus();
+            return;
+        }
+
         const btn = document.getElementById('submitBtn');
         const originalBtnText = btn.innerHTML;
         btn.disabled = true;
         btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> جاري الإرسال...';
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyIE76zPEK8TMC1-Hahc0YA42C8ND4VviR2VKEfVQZHZAbUGtldAurq5e9_jAXepmbP/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzREW0VhmtODWhT58FAakESrDWUQeo6MCvfj8A6Dnq3CeRvrwy0_GetgWhDfiZCuGMQWw/exec';
 
         fetch(scriptURL, { method: 'POST', body: new FormData(this)})
             .then(response => {
-// مثال باستخدام رسالة أكثر تفاعلية
-console.log("تم الإرسال بنجاح"); 
-// يفضل استخدام مكتبة UI لعرض تنبيه جميل بدلاً من alert()
-alert('شكراً لك! تم استلام ملاحظتك بنجاح، ونحن نقدر وقتك واهتمامك.');                this.reset();
+                console.log("تم الإرسال بنجاح"); 
+                alert('شكراً لك! تم استلام تقييمك بنجاح، ونحن نقدر وقتك واهتمامك.'); 
+                this.reset();
                 btn.disabled = false;
                 btn.innerHTML = originalBtnText;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
