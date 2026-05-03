@@ -16,15 +16,13 @@
 
     <style>
         body {
-            background-color: #f4f7f6; /* خلفية هادئة للصفحة - بقيت كما هي */
+            background-color: #f4f7f6;
             font-family: "Cairo", sans-serif;
             padding-top: 30px;
             direction: rtl;
             padding-bottom: 30px;
-            
         }
 
-        /* تحسين مظهر البطاقة الرئيسية */
         .card {
             border: none;
             border-radius: 15px;
@@ -33,48 +31,43 @@
         }
 
         .card-header {
-            /* التعديل للأبيض مع حد سفلي برتقالي */
             background-color: #ffffff; 
-            color: #1a953e; /* اللون الأخضر */
+            color: #1a953e;
             padding: 1.5rem;
-            border-bottom: 3px solid #faa619; /* اللون البرتقالي */
+            border-bottom: 3px solid #faa619;
         }
-/* تنسيق إضافي للشعار والتجاوب */
-@media (max-width: 576px) {
-    .card-header {
-        text-align: center;
-        justify-content: center !important; /* توسيط المحتوى في الموبايل الصغير جداً */
-    }
-    .header-text {
-        text-align: center !important;
-        width: 100%;
-        margin-bottom: 15px;
-    }
-    .header-logo img {
-        max-height: 60px; /* تصغير الشعار قليلاً في الموبايل */
-    }
-}
-        /* تنسيق قسم المقدمة Hero */
+
+        @media (max-width: 576px) {
+            .card-header {
+                text-align: center;
+                justify-content: center !important;
+            }
+            .header-text {
+                text-align: center !important;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            .header-logo img {
+                max-height: 60px;
+            }
+        }
+
         .hero {
             background-color: #ffffff;
             border-bottom: 1px solid #eee;
         }
         .company-name {
-            /* التعديل للأخضر */
             color: #1a953e; 
             font-weight: 700;
         }
         .intro-icon {
-            /* التعديل للبرتقالي */
             color: #faa619; 
             margin-left: 8px;
         }
 
-        /* تحسين حقول الإدخال Input Groups */
         .input-group-text {
             background-color: #f8f9fa;
             border-color: #ced4da;
-            /* التعديل للأخضر */
             color: #1a953e; 
         }
         .form-control, .form-select {
@@ -82,7 +75,6 @@
             padding: 0.6rem;
         }
         .form-control:focus, .form-select:focus {
-            /* التعديل للبرتقالي عند التركيز */
             border-color: #faa619; 
             box-shadow: 0 0 0 0.25rem rgba(250, 166, 25, 0.25);
         }
@@ -92,29 +84,25 @@
             margin-bottom: 0.5rem;
         }
 
-        /* تنسيق جدول الاستبيان */
         .survey-table-container {
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             border-radius: 12px;
             overflow: hidden;
         }
         .table thead th {
-            /* التعديل للأخضر */
             background-color: #1a953e; 
             color: white;
             border: none;
             vertical-align: middle;
             font-weight: 600;
         }
-        /* تقليل عرض عمود الأسئلة ليتسع لحقل "أخرى" */
         .col-question {
-            width: 35%; /* تم تقليل العرض ليتسع للعمود الجديد */
+            width: 45%;
             text-align: right !important;
         }
         .col-id {
             width: 5%;
         }
-        /* تأثير عند مرور الماوس على الصفوف - تم تعديله للأخضر الفاتح جداً */
         .table-hover tbody tr:hover {
             background-color: #f0f9f2; 
             transition: background-color 0.3s ease;
@@ -123,39 +111,57 @@
             vertical-align: middle;
         }
 
-        /* تنسيق قسم الملاحظات */
+        /* تنسيق حقل السبب */
+        .reason-field {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .reason-field label {
+            color: #e65100;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .reason-field .form-control {
+            border-color: #ffb74d;
+        }
+        .reason-field .form-control:focus {
+            border-color: #f57c00;
+            box-shadow: 0 0 0 0.25rem rgba(245, 124, 0, 0.2);
+        }
+
         .feedback-box {
             background-color: #ffffff; 
             border-radius: 12px;
             border: 2px solid #e9ecef; 
         }
         .feedback-title {
-            /* التعديل للبرتقالي */
             color: #faa619; 
             font-weight: 700;
         }
 
-        /* زر الإرسال */
         .btn-submit {
-            /* التعديل للأخضر */
             background-color: #1a953e; 
             border: none;
             padding: 12px 40px;
             font-size: 1.1rem;
             font-weight: 600;
             border-radius: 50px;
-            /* التعديل للظل الأخضر */
             box-shadow: 0 4px 15px rgba(26, 149, 62, 0.3); 
             transition: all 0.3s ease;
         }
         .btn-submit:hover {
-            /* التعديل للأخضر الأغمق للتحويم */
             background-color: #126e2d; 
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(26, 149, 62, 0.4); 
         }
         
-        /* تحسينات للموبايل */
         @media (max-width: 768px) {
             .col-question {
                 width: 100%;
@@ -164,212 +170,176 @@
             .table thead th {
                 font-size: 0.8rem;
             }
-            /* تحسين عرض حقل 'أخرى' في الموبايل */
-            #surveyTable td[data-label="أخرى"] {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            #surveyTable td[data-label="أخرى"]::before {
-                margin-bottom: 8px;
-            }
-            #surveyTable td[data-label="أخرى"] input {
-                width: 100%;
-            }
         }
         .fas{
             border-radius: 20%;
         }
         .input-group-text{
-border:none; background:none
-
+            border:none; background:none
         }
-        /* تنسيق التجاوب للهواتف */
-@media (max-width: 600px) {
-    /* إخفاء رأس الجدول الأصلي */
-    #surveyTable thead {
-        display: none;
-    }
 
-    #surveyTable, #surveyTable tbody, #surveyTable tr, #surveyTable td {
-        display: block;
-        width: 100%;
-    }
+        @media (max-width: 600px) {
+            #surveyTable thead {
+                display: none;
+            }
+            #surveyTable, #surveyTable tbody, #surveyTable tr, #surveyTable td {
+                display: block;
+                width: 100%;
+            }
+            #surveyTable tr {
+                margin-bottom: 20px;
+                border: 1px solid #1a953e; 
+                border-radius: 15px;
+                overflow: hidden;
+                background: #fff;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            }
+            #surveyTable td {
+                text-align: right !important;
+                padding: 12px 15px;
+                border: none;
+                border-bottom: 1px solid #f0f0f0;
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            #surveyTable td.col-criterion {
+                background-color: #f0f9f2; 
+                font-weight: bold;
+                color: #1a953e; 
+                display: block;
+                text-align: center !important;
+            }
+            #surveyTable td:not(.col-criterion):not(.col-id)::before {
+                content: attr(data-label);
+                font-weight: bold;
+                color: #555;
+            }
+            #surveyTable td.col-id {
+                display: none;
+            }
+            .reason-field {
+                display: block !important;
+                margin: 10px 0;
+            }
+        }
 
-    #surveyTable tr {
-        margin-bottom: 20px;
-        /* التعديل للأخضر */
-        border: 1px solid #1a953e; 
-        border-radius: 15px;
-        overflow: hidden;
-        background: #fff;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
+        @media (max-width: 768px) {
+            #surveyTable thead {
+                display: none;
+            }
+            #surveyTable tbody tr {
+                display: block;
+                margin-bottom: 1.5rem;
+                border: 1px solid #dee2e6;
+                border-radius: 10px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            }
+            #surveyTable td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                text-align: left;
+                border-bottom: 1px solid #eee;
+                padding: 10px 15px;
+            }
+            #surveyTable td.col-criterion {
+                display: block;
+                text-align: center !important;
+                background-color: #f8f9fa;
+                font-weight: bold;
+                color: #1a953e; 
+            }
+            #surveyTable td.col-id {
+                display: none;
+            }
+            #surveyTable td[data-label]::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: #666;
+            }
+        }
 
-    #surveyTable td {
-        text-align: right !important;
-        padding: 12px 15px;
-        border: none;
-        border-bottom: 1px solid #f0f0f0;
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+        .footer-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            border-top: 2px solid #faa619; 
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            z-index: 999;
+        }
+        .brand-footer {
+            color: #1a953e; 
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        .dev-footer {
+            color: #faa619; 
+            font-size: 0.8em;
+            margin-top: 2px;
+        }
+        body {
+            padding-bottom: 70px; 
+        }
 
-    /* تنسيق خاص لعمود السؤال في الموبايل */
-    #surveyTable td.col-criterion {
-        /* التعديل للأخضر الفاتح جداً */
-        background-color: #f0f9f2; 
-        font-weight: bold;
-        /* التعديل للأخضر */
-        color: #1a953e; 
-        display: block; /* ليأخذ السطر كاملاً */
-        text-align: center !important;
-    }
+        .text-mine-trust-blue {
+            color: #1a953e !important;
+        }
+        .text-mine-trust-teal {
+            color: #faa619 !important;
+        }
+        .bg-mine-trust-blue {
+            background-color: #1a953e !important;
+        }
+        .bg-mine-trust-teal {
+            background-color: #faa619 !important;
+        }
 
-    /* إضافة تسمية قبل دوائر الاختيار في الموبايل */
-    #surveyTable td:not(.col-criterion):not(.col-id)::before {
-        content: attr(data-label); /* سنسحب النص من خاصية data-label */
-        font-weight: bold;
-        color: #555;
-    }
+        .card-footer-custom {
+            background-color: #ffffff;
+            border-top: 2px solid #faa619;
+            padding: 15px 25px;
+            color: #1a953e;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
 
-    #surveyTable td.col-id {
-        display: none; /* إخفاء الرقم المتسلسل في الموبايل لتقليل الزحام */
-    }
-}
-@media (max-width: 768px) {
-    /* تحويل الجدول إلى نظام كتل */
-    #surveyTable thead {
-        display: none; /* إخفاء الرأس في الموبايل */
-    }
-    
-    #surveyTable tbody tr {
-        display: block;
-        margin-bottom: 1.5rem;
-        border: 1px solid #dee2e6;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    
-    #surveyTable td {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        text-align: left;
-        border-bottom: 1px solid #eee;
-        padding: 10px 15px;
-    }
+        .contact-link {
+            color: #faa619;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .contact-link:hover {
+            color: #1a953e;
+            text-decoration: underline;
+        }
 
-    /* جعل السؤال يظهر بشكل بارز في أعلى البطاقة */
-    #surveyTable td.col-criterion {
-        display: block;
-        text-align: center !important;
-        background-color: #f8f9fa;
-        font-weight: bold;
-        /* التعديل للأخضر */
-        color: #1a953e; 
-    }
-
-    #surveyTable td.col-id {
-        display: none; /* إخفاء الرقم في الموبايل لتقليل الزحام */
-    }
-
-    /* إظهار التسمية (ممتاز، جيد..) بجانب الراديو بوتون */
-    #surveyTable td[data-label]::before {
-        content: attr(data-label);
-        font-weight: 600;
-        color: #666;
-    }
-}
-            /* تنسيق الفوتر الثابت */
-.footer-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 10px 0;
-    text-align: center;
-    /* التعديل للبرتقالي */
-    border-top: 2px solid #faa619; 
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-    z-index: 999;
-}
-.brand-footer {
-    /* التعديل للأخضر */
-    color: #1a953e; 
-    font-weight: bold;
-    font-size: 0.9em;
-}
-.dev-footer {
-    /* التعديل للبرتقالي */
-    color: #faa619; 
-    font-size: 0.8em;
-    margin-top: 2px;
-}
-/* إضافة هامش سفلي للحاوية الرئيسية لضمان عدم تغطية المحتوى بالفوتر */
-body {
-    padding-bottom: 70px; 
-}
-
-/* الإبقاء على نفس أسماء الكلاسات مع تغيير الألوان المطلوبة برمجياً */
-.text-mine-trust-blue {
-    color: #1a953e !important; /* أخضر */
-}
-.text-mine-trust-teal {
-    color: #faa619 !important; /* برتقالي */
-}
-.bg-mine-trust-blue {
-    background-color: #1a953e !important; /* أخضر */
-}
-.bg-mine-trust-teal {
-    background-color: #faa619 !important; /* برتقالي */
-}
-
-/* تنسيق فوتر الكارد */
-.card-footer-custom {
-    background-color: #ffffff; /* تم التعديل للأبيض بدلاً من الأزرق الفاتح */
-    border-top: 2px solid #faa619; /* تم إضافة حد برتقالي */
-    padding: 15px 25px;
-    color: #1a953e; /* اللون الأخضر */
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.contact-link {
-    color: #faa619; /* لون برتقالي للرقم */
-    text-decoration: none;
-    transition: all 0.3s;
-}
-
-.contact-link:hover {
-    color: #1a953e; /* أخضر عند التحويم */
-    text-decoration: underline;
-}
-
-@media (max-width: 576px) {
-    .card-footer-custom {
-        text-align: center;
-        flex-direction: column !important;
-        gap: 10px;
-    }
-}
+        @media (max-width: 576px) {
+            .card-footer-custom {
+                text-align: center;
+                flex-direction: column !important;
+                gap: 10px;
+            }
+        }
     </style>
 </head>
 <body>
 
 <div class="container animated fadeIn">
     <div class="card">
-       <div class="card-header d-flex justify-content-between align-items-center flex-wrap py-3 px-4">
-    <div class="header-text text-end">
-        <h4 class="mb-0"><i class="fas fa-poll-h me-2"></i> إستبيان قياس رضا العملاء</h4>
-    </div>
-
-    <div class="header-logo mt-2 mt-md-0">
-        <img src="logoalrawda.png" alt="شعار الروضة" class="img-fluid" style="max-height: 75px; width: auto; object-fit: contain;">
-    </div>
-</div>
+        <div class="card-header d-flex justify-content-between align-items-center flex-wrap py-3 px-4">
+            <div class="header-text text-end">
+                <h4 class="mb-0"><i class="fas fa-poll-h me-2"></i> إستبيان قياس رضا العملاء</h4>
+            </div>
+            <div class="header-logo mt-2 mt-md-0">
+                <img src="logoalrawda.png" alt="شعار الروضة" class="img-fluid" style="max-height: 75px; width: auto; object-fit: contain;">
+            </div>
+        </div>
         
         <section class="hero py-4 px-3">
             <div class="container">
@@ -393,11 +363,11 @@ body {
             <form id="customerSurveyForm">
                 
                 <h6 class="fw-bold mb-3 text-secondary"><i class="fas fa-user-tag me-2"></i> بيانات العميل الأساسية:</h6>
-                <div class="row g-3 mb-5" >
+                <div class="row g-3 mb-5">
                     <div class="col-md-6">
                         <label class="form-label">اسم العميل <span class="text-danger">*</span></label>
                         <div class="input-group">
-                            <span class="input-group-text" style=""><i class="fas fa-user"></i></span>
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
                             <input type="text" name="customerName" class="form-control" placeholder="الاسم الثلاثي" required>
                         </div>
                     </div>
@@ -413,7 +383,7 @@ body {
                     <div class="col-md-6">
                         <label class="form-label">نشاط العميل</label>
                         <div class="input-group">
-                            <span class="input-group-text" ><i class="fas fa-briefcase"></i></span>
+                            <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
                             <input type="text" name="activity" class="form-control" placeholder="مثال: تجاري، فردي...">
                         </div>
                     </div>
@@ -422,7 +392,7 @@ body {
                         <label class="form-label">الفرع المعني بالتقييم <span class="text-danger">*</span></label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                             <select class="form-select" name="branch" required>
+                            <select class="form-select" name="branch" required>
                                 <option selected disabled value="">اختر الفرع من القائمة</option>
                                 <option value="الفرع الرئيسي">الفرع الرئيسي</option>
                                 <option value="فرع جولة مأرب">فرع جولة مأرب</option>
@@ -436,35 +406,36 @@ body {
                             </select>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="text-center mb-4">
-                     <h5 class="fw-bold text-dark"><i class="fas fa-list-check me-2 text-mine-trust-blue"></i> بنود التقييم | Survey Items</h5>
-                     <p class="text-muted small">يرجى اختيار التقييم المناسب لكل بند (5 هو الأفضل) أو كتابة ملاحظتك</p>
+                    <h5 class="fw-bold text-dark"><i class="fas fa-list-check me-2 text-mine-trust-blue"></i> بنود التقييم | Survey Items</h5>
+                    <p class="text-muted small">يرجى اختيار التقييم المناسب لكل بند (5 هو الأفضل)</p>
                 </div>
                 
-              <div class="table-responsive survey-table-container mb-5">
-    <table class="table table-bordered table-hover text-center mb-0" id="surveyTable">
-        <thead>
-            <tr>
-                <th rowspan="2" class="col-id"><i class="fas fa-hashtag"></i></th>
-                <th rowspan="2" class="col-question col-criterion text-end pe-3"><i class="fas fa-clipboard-list me-2"></i> المعايير / الأسئلة</th>
-                <th colspan="5"><i class="fas fa-star me-1 text-mine-trust-teal"></i> مستوى الرضا</th>
-                <th rowspan="2" style="width: 15%;"><i class="fas fa-pen me-1 text-mine-trust-teal"></i> أخرى</th>
-            </tr>
-            <tr style="font-size: 0.85rem;">
-                <th>5<br><span class="badge bg-success fw-normal">ممتاز</span></th>
-                <th>4<br><span class="badge bg-primary fw-normal">جيد جداً</span></th>
-                <th>3<br><span class="badge bg-info text-dark fw-normal">جيد</span></th>
-                <th>2<br><span class="badge bg-secondary fw-normal">مقبول</span></th>
-                <th>1<br><span class="badge bg-danger fw-normal">ضعيف</span></th>
-            </tr>
-        </thead>
-        <tbody id="surveyBody">
-            </tbody>
-    </table>
-</div>
+                <div class="table-responsive survey-table-container mb-4">
+                    <table class="table table-bordered table-hover text-center mb-0" id="surveyTable">
+                        <thead>
+                            <tr>
+                                <th rowspan="2" class="col-id"><i class="fas fa-hashtag"></i></th>
+                                <th rowspan="2" class="col-question col-criterion text-end pe-3"><i class="fas fa-clipboard-list me-2"></i> المعايير / الأسئلة</th>
+                                <th colspan="5"><i class="fas fa-star me-1 text-mine-trust-teal"></i> مستوى الرضا</th>
+                            </tr>
+                            <tr style="font-size: 0.85rem;">
+                                <th>5<br><span class="badge bg-success fw-normal">ممتاز</span></th>
+                                <th>4<br><span class="badge bg-primary fw-normal">جيد جداً</span></th>
+                                <th>3<br><span class="badge bg-info text-dark fw-normal">جيد</span></th>
+                                <th>2<br><span class="badge bg-secondary fw-normal">مقبول</span></th>
+                                <th>1<br><span class="badge bg-danger fw-normal">ضعيف</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="surveyBody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- حاوية حقول الأسباب -->
+                <div id="reasonsContainer"></div>
 
                 <div class="feedback-box p-4 mb-4">
                     <label class="form-label feedback-title h6 mb-3">
@@ -478,30 +449,33 @@ body {
                         <i class="fas fa-paper-plane me-2"></i> إرسال التقييم
                     </button>
                 </div>
-           </form>
-        </div> <div class="card-footer-custom d-flex justify-content-between align-items-center flex-wrap">
-             <div class="footer-right">
-    <i class="fab fa-whatsapp me-2 text-mine-trust-teal" style="font-size: 1.2rem;"></i>
-    للتواصل المباشر عبر الواتساب: 
-    <a href="https://wa.me/967781010064" class="contact-link" target="_blank" dir="ltr">781010064</a>
-</div>
-
+            </form>
+        </div>
+        
+        <div class="card-footer-custom d-flex justify-content-between align-items-center flex-wrap">
+            <div class="footer-right">
+                <i class="fab fa-whatsapp me-2 text-mine-trust-teal" style="font-size: 1.2rem;"></i>
+                للتواصل المباشر عبر الواتساب: 
+                <a href="https://wa.me/967781010064" class="contact-link" target="_blank" dir="ltr">781010064</a>
+            </div>
             <div class="footer-left text-muted fw-normal">
                 <span class="badge bg-light text-dark border">REC-QF-17-03/Rev02</span>
             </div>
         </div>
+    </div>
 </div>
-</div>
-    <footer>
+
+<footer>
     <div class="footer-container">
-    <div class="brand-footer">
-       شركة الروضة للصرافة والتحويلات المالية -2026 © 
+        <div class="brand-footer">
+            شركة الروضة للصرافة والتحويلات المالية -2026 © 
+        </div>
+        <div class="dev-footer">
+            تصميم وتطوير: محمد أحمد الشرفي
+        </div>
     </div>
-    <div class="dev-footer">
-       تصميم وتطوير: محمد أحمد الشرفي
-    </div>
-</div>
 </footer>
+
 <script>
     const surveyItems = [
         "جودة الخدمات المقدمة بشكل عام.",
@@ -517,6 +491,7 @@ body {
     ];
 
     const surveyBody = document.getElementById('surveyBody');
+    const reasonsContainer = document.getElementById('reasonsContainer');
 
     const ratingOptions = [
         { val: 5, label: "ممتاز" },
@@ -526,10 +501,33 @@ body {
         { val: 1, label: "ضعيف" }
     ];
 
+    // تتبع القيم المختارة لكل سؤال
+    const lastSelectedValues = {};
+    // تتبع السؤال الذي يحتاج سببًا ولم يُكتب بعد
+    let pendingReasonQuestion = null;
+
+    // التحقق مما إذا كان هناك سؤال معلق (يحتاج سببًا ولم يُكتب بعد)
+    function getPendingQuestion() {
+        if (pendingReasonQuestion) {
+            const reasonInput = document.getElementById(`reason_input_q${pendingReasonQuestion}`);
+            if (reasonInput && !reasonInput.value.trim()) {
+                return pendingReasonQuestion;
+            } else {
+                pendingReasonQuestion = null;
+                return null;
+            }
+        }
+        return null;
+    }
+
+    // إنشاء صفوف الجدول وحقول الأسباب
     surveyItems.forEach((item, index) => {
+        const qNum = index + 1;
         const questionIcon = '<i class="fas fa-caret-left text-mine-trust-blue me-2 opacity-50"></i>';
+        
+        // إنشاء صف الجدول
         let row = `<tr>
-            <td class="fw-bold col-id">${index + 1}</td>
+            <td class="fw-bold col-id">${qNum}</td>
             <td class="text-end pe-3 col-criterion">${questionIcon} ${item}</td>`;
         
         ratingOptions.forEach(option => {
@@ -537,43 +535,136 @@ body {
                 <td data-label="${option.label}">
                     <div class="form-check d-flex justify-content-center">
                         <input class="form-check-input" type="radio" 
-                               name="q${index + 1}" 
-                               value="${option.val}" required>
+                               name="q${qNum}" 
+                               value="${option.val}" 
+                               data-question="${qNum}"
+                               required>
                     </div>
                 </td>`;
         });
 
-        row += `
-            <td data-label="أخرى">
-                <input type="text" name="other_q${index + 1}" class="form-control form-control-sm" placeholder="ملاحظة...">
-            </td>
-        `;
-
         row += `</tr>`;
         surveyBody.innerHTML += row;
+
+        // إنشاء حقل السبب المخفي لكل سؤال
+        const reasonDiv = document.createElement('div');
+        reasonDiv.className = 'reason-field';
+        reasonDiv.id = `reason_q${qNum}`;
+        reasonDiv.innerHTML = `
+            <label for="reason_input_q${qNum}">
+                <i class="fas fa-exclamation-circle me-1"></i>
+                <span class="reason-label-text">فضلاً ما السبب لاختيارك هذا التقييم؟</span>
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" 
+                   name="reason_q${qNum}" 
+                   id="reason_input_q${qNum}" 
+                   class="form-control" 
+                   placeholder="اكتب السبب هنا...">
+        `;
+        reasonsContainer.appendChild(reasonDiv);
     });
 
-    // --- الإضافات الجديدة لحقل الهاتف وتحويل الأرقام ---
+    // إضافة مستمعي الأحداث لأزرار الاختيار
+    document.querySelectorAll('input[type="radio"][name^="q"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const qNum = parseInt(this.getAttribute('data-question'));
+            const val = parseInt(this.value);
+            
+            // التحقق من وجود سؤال معلق سابق (غير السؤال الحالي)
+            const pending = getPendingQuestion();
+            if (pending !== null && pending !== qNum) {
+                // يوجد سؤال آخر يحتاج سببًا ولم يُكتب بعد
+                alert(`⚠️ يجب تعبئة سبب التقييم للبند رقم ${pending} أولاً قبل الانتقال لبند آخر.`);
+                
+                // إرجاع الاختيار للوضع السابق لهذا السؤال
+                const prevVal = lastSelectedValues[qNum];
+                if (prevVal) {
+                    const prevRadio = document.querySelector(`input[name="q${qNum}"][value="${prevVal}"]`);
+                    if (prevRadio) prevRadio.checked = true;
+                } else {
+                    this.checked = false;
+                }
+                
+                // التركيز على حقل السبب المعلق وإبرازه
+                const pendingInput = document.getElementById(`reason_input_q${pending}`);
+                const pendingDiv = document.getElementById(`reason_q${pending}`);
+                pendingDiv.style.borderColor = '#f57c00';
+                pendingDiv.style.boxShadow = '0 0 0 0.25rem rgba(245, 124, 0, 0.3)';
+                pendingInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                setTimeout(() => {
+                    pendingInput.focus();
+                    // إزالة التأثير بعد التركيز
+                    setTimeout(() => {
+                        pendingDiv.style.borderColor = '#ffe082';
+                        pendingDiv.style.boxShadow = 'none';
+                    }, 1500);
+                }, 300);
+                return;
+            }
+            
+            // إخفاء جميع حقول الأسباب الأخرى لضمان ظهور حقل واحد فقط
+            document.querySelectorAll('.reason-field').forEach(div => {
+                const divQNum = parseInt(div.id.replace('reason_q', ''));
+                if (divQNum !== qNum) {
+                    div.style.display = 'none';
+                    div.querySelector('input').removeAttribute('required');
+                }
+            });
+            
+            const reasonDiv = document.getElementById(`reason_q${qNum}`);
+            const reasonInput = document.getElementById(`reason_input_q${qNum}`);
+            const reasonLabel = reasonDiv.querySelector('.reason-label-text');
+            
+            if (val === 1 || val === 2) {
+                reasonDiv.style.display = 'block';
+                reasonInput.setAttribute('required', 'required');
+                
+                if (val === 1) {
+                    reasonLabel.textContent = 'فضلاً ما السبب لاختيارك تقييم ضعيف؟';
+                } else {
+                    reasonLabel.textContent = 'فضلاً ما السبب لاختيارك تقييم مقبول؟';
+                }
+                
+                pendingReasonQuestion = qNum;
+                
+                setTimeout(() => {
+                    reasonInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    reasonInput.focus();
+                }, 100);
+            } else {
+                reasonDiv.style.display = 'none';
+                reasonInput.removeAttribute('required');
+                reasonInput.value = '';
+                
+                if (pendingReasonQuestion === qNum) {
+                    pendingReasonQuestion = null;
+                }
+            }
+            
+            // حفظ القيمة الجديدة بعد نجاح التغيير
+            lastSelectedValues[qNum] = val;
+        });
+    });
 
-    const phoneInput = document.getElementById('phoneNumber');
-    
-    // وظيفة تحويل الأرقام الهندية/العربية إلى إنجليزية
+    // تحويل الأرقام العربية/الهندية إلى إنجليزية
     function convertToEnglishDigits(str) {
         return str.replace(/[٠-٩]/g, function(d) {
             return d.charCodeAt(0) - 1632;
         });
     }
 
-    // مراقبة الإدخال في حقل الهاتف لتحويل الأرقام ومنع الحروف
+    const phoneInput = document.getElementById('phoneNumber');
+    
     phoneInput.addEventListener('input', function(e) {
         let val = convertToEnglishDigits(this.value);
-        this.value = val.replace(/[^0-9]/g, ''); // إبقاء الأرقام فقط
+        this.value = val.replace(/[^0-9]/g, '');
     });
 
     document.getElementById('customerSurveyForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // 1. التحقق من رقم الهاتف (9 أرقام ويبدأ ببادئة صحيحة)
+        // التحقق من رقم الهاتف
         const phoneVal = phoneInput.value;
         const validPrefixes = ['77', '78', '73', '71', '70'];
         const prefix = phoneVal.substring(0, 2);
@@ -590,18 +681,40 @@ body {
             return;
         }
 
+        // التحقق من عدم وجود سبب معلق قبل الإرسال
+        const pending = getPendingQuestion();
+        if (pending !== null) {
+            alert(`❌ يجب تعبئة سبب التقييم للبند رقم ${pending} قبل الإرسال.`);
+            const pendingInput = document.getElementById(`reason_input_q${pending}`);
+            pendingInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => pendingInput.focus(), 300);
+            return;
+        }
+
         const btn = document.getElementById('submitBtn');
         const originalBtnText = btn.innerHTML;
         btn.disabled = true;
         btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> جاري الإرسال...';
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzREW0VhmtODWhT58FAakESrDWUQeo6MCvfj8A6Dnq3CeRvrwy0_GetgWhDfiZCuGMQWw/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzr-q6dYr0m1RRT6F610K_1z_mDjN88mp8TqRhwz1Uv3dltkhCtCW48DwptEY_6LqqgrQ/exec';
 
         fetch(scriptURL, { method: 'POST', body: new FormData(this)})
             .then(response => {
                 console.log("تم الإرسال بنجاح"); 
                 alert('شكراً لك! تم استلام تقييمك بنجاح، ونحن نقدر وقتك واهتمامك.'); 
                 this.reset();
+                
+                // إعادة تعيين المتغيرات
+                Object.keys(lastSelectedValues).forEach(key => delete lastSelectedValues[key]);
+                pendingReasonQuestion = null;
+                
+                // إخفاء جميع حقول الأسباب
+                document.querySelectorAll('.reason-field').forEach(div => {
+                    div.style.display = 'none';
+                    div.querySelector('input').value = '';
+                    div.querySelector('input').removeAttribute('required');
+                });
+                
                 btn.disabled = false;
                 btn.innerHTML = originalBtnText;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -615,5 +728,3 @@ body {
 </script>
 </body>
 </html>
-
-
