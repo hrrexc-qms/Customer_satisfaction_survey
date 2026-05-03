@@ -696,7 +696,7 @@
         btn.disabled = true;
         btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> جاري الإرسال...';
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxF5wGdELSRajk_W4uRdbzV6eyjEFkDC62dtB-9gPhbjeh738PRZ012ZgPILekIQnqYHQ/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzWCCAqsBEcHpXGVOjdgrR8U0YmEcfey9R7VBW70GJORA32ukIHwLbWMstXYhFMguQ4fQ/exec';
 
         fetch(scriptURL, { method: 'POST', body: new FormData(this)})
             .then(response => {
