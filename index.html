@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>استبيان قياس رضا العملاء - شركة الروضة</title>
-    <link rel="icon" type="image/png" href="favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -111,27 +108,32 @@
             vertical-align: middle;
         }
 
-        /* تنسيق حقل السبب */
-        .reason-field {
-            background-color: #fff8e1;
-            border: 1px solid #ffe082;
-            border-radius: 8px;
-            padding: 12px 15px;
-            margin-top: 10px;
-            margin-bottom: 15px;
+        /* تنسيق حقل السبب المدمج تحت البند */
+        .reason-row {
             display: none;
+            background-color: #fff8e1 !important;
         }
-        .reason-field label {
+        .reason-row td {
+            padding: 0;
+            border: none;
+        }
+        .reason-cell {
+            padding: 12px 15px;
+            border: 1px solid #ffe082;
+            border-radius: 0 0 8px 8px;
+            margin: 0 15px 10px 15px;
+        }
+        .reason-cell label {
             color: #e65100;
             font-weight: 700;
             font-size: 0.9rem;
             margin-bottom: 8px;
             display: block;
         }
-        .reason-field .form-control {
+        .reason-cell .form-control {
             border-color: #ffb74d;
         }
-        .reason-field .form-control:focus {
+        .reason-cell .form-control:focus {
             border-color: #f57c00;
             box-shadow: 0 0 0 0.25rem rgba(245, 124, 0, 0.2);
         }
@@ -178,6 +180,7 @@
             border:none; background:none
         }
 
+        /* تنسيق الموبايل */
         @media (max-width: 600px) {
             #surveyTable thead {
                 display: none;
@@ -187,7 +190,7 @@
                 width: 100%;
             }
             #surveyTable tr {
-                margin-bottom: 20px;
+                margin-bottom: 0;
                 border: 1px solid #1a953e; 
                 border-radius: 15px;
                 overflow: hidden;
@@ -219,9 +222,18 @@
             #surveyTable td.col-id {
                 display: none;
             }
-            .reason-field {
+            /* حقل السبب في الموبايل */
+            .reason-row {
+                display: none;
+                background-color: #fff8e1 !important;
+            }
+            .reason-row td {
                 display: block !important;
-                margin: 10px 0;
+                padding: 10px 15px;
+            }
+            .reason-cell {
+                margin: 0;
+                border-radius: 0;
             }
         }
 
@@ -430,12 +442,10 @@
                             </tr>
                         </thead>
                         <tbody id="surveyBody">
+                            <!-- يُملأ ديناميكياً -->
                         </tbody>
                     </table>
                 </div>
-
-                <!-- حاوية حقول الأسباب -->
-                <div id="reasonsContainer"></div>
 
                 <div class="feedback-box p-4 mb-4">
                     <label class="form-label feedback-title h6 mb-3">
@@ -477,7 +487,7 @@
 </footer>
 
 <script>
-    const surveyItems = [
+       const surveyItems = [
         "جودة الخدمات المقدمة بشكل عام.",
         "دقة إنجاز المعاملات في الوقت المحدد.",
         "كفاءة الموظفين وحسن تعاملهم وتصرفهم.",
@@ -491,7 +501,6 @@
     ];
 
     const surveyBody = document.getElementById('surveyBody');
-    const reasonsContainer = document.getElementById('reasonsContainer');
 
     const ratingOptions = [
         { val: 5, label: "ممتاز" },
@@ -501,12 +510,9 @@
         { val: 1, label: "ضعيف" }
     ];
 
-    // تتبع القيم المختارة لكل سؤال
     const lastSelectedValues = {};
-    // تتبع السؤال الذي يحتاج سببًا ولم يُكتب بعد
     let pendingReasonQuestion = null;
 
-    // التحقق مما إذا كان هناك سؤال معلق (يحتاج سببًا ولم يُكتب بعد)
     function getPendingQuestion() {
         if (pendingReasonQuestion) {
             const reasonInput = document.getElementById(`reason_input_q${pendingReasonQuestion}`);
@@ -520,13 +526,12 @@
         return null;
     }
 
-    // إنشاء صفوف الجدول وحقول الأسباب
+    // إنشاء صفوف الجدول مع حقول الأسباب المدمجة
     surveyItems.forEach((item, index) => {
         const qNum = index + 1;
         const questionIcon = '<i class="fas fa-caret-left text-mine-trust-blue me-2 opacity-50"></i>';
         
-        // إنشاء صف الجدول
-        let row = `<tr>
+        let row = `<tr id="question_row_${qNum}">
             <td class="fw-bold col-id">${qNum}</td>
             <td class="text-end pe-3 col-criterion">${questionIcon} ${item}</td>`;
         
@@ -544,25 +549,25 @@
         });
 
         row += `</tr>`;
+        
+        row += `<tr class="reason-row" id="reason_row_${qNum}">
+            <td colspan="7" style="padding: 0; border: none;">
+                <div class="reason-cell">
+                    <label for="reason_input_q${qNum}">
+                        <i class="fas fa-exclamation-circle me-1"></i>
+                        <span class="reason-label-text">فضلاً ما السبب لاختيارك هذا التقييم؟</span>
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" 
+                           name="reason_q${qNum}" 
+                           id="reason_input_q${qNum}" 
+                           class="form-control" 
+                           placeholder="اكتب السبب هنا...">
+                </div>
+            </td>
+        </tr>`;
+        
         surveyBody.innerHTML += row;
-
-        // إنشاء حقل السبب المخفي لكل سؤال
-        const reasonDiv = document.createElement('div');
-        reasonDiv.className = 'reason-field';
-        reasonDiv.id = `reason_q${qNum}`;
-        reasonDiv.innerHTML = `
-            <label for="reason_input_q${qNum}">
-                <i class="fas fa-exclamation-circle me-1"></i>
-                <span class="reason-label-text">فضلاً ما السبب لاختيارك هذا التقييم؟</span>
-                <span class="text-danger">*</span>
-            </label>
-            <input type="text" 
-                   name="reason_q${qNum}" 
-                   id="reason_input_q${qNum}" 
-                   class="form-control" 
-                   placeholder="اكتب السبب هنا...">
-        `;
-        reasonsContainer.appendChild(reasonDiv);
     });
 
     // إضافة مستمعي الأحداث لأزرار الاختيار
@@ -571,13 +576,10 @@
             const qNum = parseInt(this.getAttribute('data-question'));
             const val = parseInt(this.value);
             
-            // التحقق من وجود سؤال معلق سابق (غير السؤال الحالي)
             const pending = getPendingQuestion();
             if (pending !== null && pending !== qNum) {
-                // يوجد سؤال آخر يحتاج سببًا ولم يُكتب بعد
                 alert(`⚠️ يجب تعبئة سبب التقييم للبند رقم ${pending} أولاً قبل الانتقال لبند آخر.`);
                 
-                // إرجاع الاختيار للوضع السابق لهذا السؤال
                 const prevVal = lastSelectedValues[qNum];
                 if (prevVal) {
                     const prevRadio = document.querySelector(`input[name="q${qNum}"][value="${prevVal}"]`);
@@ -586,38 +588,33 @@
                     this.checked = false;
                 }
                 
-                // التركيز على حقل السبب المعلق وإبرازه
                 const pendingInput = document.getElementById(`reason_input_q${pending}`);
-                const pendingDiv = document.getElementById(`reason_q${pending}`);
-                pendingDiv.style.borderColor = '#f57c00';
-                pendingDiv.style.boxShadow = '0 0 0 0.25rem rgba(245, 124, 0, 0.3)';
+                const pendingRow = document.getElementById(`reason_row_${pending}`);
+                pendingRow.style.display = 'table-row';
                 pendingInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 setTimeout(() => {
                     pendingInput.focus();
-                    // إزالة التأثير بعد التركيز
-                    setTimeout(() => {
-                        pendingDiv.style.borderColor = '#ffe082';
-                        pendingDiv.style.boxShadow = 'none';
-                    }, 1500);
                 }, 300);
                 return;
             }
             
-            // إخفاء جميع حقول الأسباب الأخرى لضمان ظهور حقل واحد فقط
-            document.querySelectorAll('.reason-field').forEach(div => {
-                const divQNum = parseInt(div.id.replace('reason_q', ''));
-                if (divQNum !== qNum) {
-                    div.style.display = 'none';
-                    div.querySelector('input').removeAttribute('required');
+            document.querySelectorAll('.reason-row').forEach(row => {
+                const rowQNum = parseInt(row.id.replace('reason_row_', ''));
+                if (rowQNum !== qNum) {
+                    row.style.display = 'none';
+                    const input = row.querySelector('input');
+                    if (input) {
+                        input.removeAttribute('required');
+                    }
                 }
             });
             
-            const reasonDiv = document.getElementById(`reason_q${qNum}`);
+            const reasonRow = document.getElementById(`reason_row_${qNum}`);
             const reasonInput = document.getElementById(`reason_input_q${qNum}`);
-            const reasonLabel = reasonDiv.querySelector('.reason-label-text');
+            const reasonLabel = reasonRow.querySelector('.reason-label-text');
             
             if (val === 1 || val === 2) {
-                reasonDiv.style.display = 'block';
+                reasonRow.style.display = 'table-row';
                 reasonInput.setAttribute('required', 'required');
                 
                 if (val === 1) {
@@ -629,11 +626,11 @@
                 pendingReasonQuestion = qNum;
                 
                 setTimeout(() => {
-                    reasonInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    reasonRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     reasonInput.focus();
                 }, 100);
             } else {
-                reasonDiv.style.display = 'none';
+                reasonRow.style.display = 'none';
                 reasonInput.removeAttribute('required');
                 reasonInput.value = '';
                 
@@ -642,12 +639,10 @@
                 }
             }
             
-            // حفظ القيمة الجديدة بعد نجاح التغيير
             lastSelectedValues[qNum] = val;
         });
     });
 
-    // تحويل الأرقام العربية/الهندية إلى إنجليزية
     function convertToEnglishDigits(str) {
         return str.replace(/[٠-٩]/g, function(d) {
             return d.charCodeAt(0) - 1632;
@@ -664,7 +659,6 @@
     document.getElementById('customerSurveyForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // التحقق من رقم الهاتف
         const phoneVal = phoneInput.value;
         const validPrefixes = ['77', '78', '73', '71', '70'];
         const prefix = phoneVal.substring(0, 2);
@@ -681,7 +675,6 @@
             return;
         }
 
-        // التحقق من عدم وجود سبب معلق قبل الإرسال
         const pending = getPendingQuestion();
         if (pending !== null) {
             alert(`❌ يجب تعبئة سبب التقييم للبند رقم ${pending} قبل الإرسال.`);
@@ -696,34 +689,61 @@
         btn.disabled = true;
         btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> جاري الإرسال...';
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzWCCAqsBEcHpXGVOjdgrR8U0YmEcfey9R7VBW70GJORA32ukIHwLbWMstXYhFMguQ4fQ/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzN31GOr8ZkXRFZFhB7Y2tcnoZ3e30PcHRCuVQBhsqK91kO70coXFen6vPBWKZvYbKUcg/exec';
+        
 
-        fetch(scriptURL, { method: 'POST', body: new FormData(this)})
-            .then(response => {
-                console.log("تم الإرسال بنجاح"); 
+        // ✅ إنشاء FormData يدوياً للتأكد من إرسال جميع الحقول
+        const formData = new FormData(this);
+        
+        // التحقق من البيانات قبل الإرسال
+        console.log("=== بيانات النموذج ===");
+        for (let [key, value] of formData.entries()) {
+            console.log(key + ": " + value);
+        }
+
+        fetch(scriptURL, { 
+            method: 'POST', 
+            body: formData
+        })
+        .then(response => {
+            console.log("Response status:", response.status);
+            console.log("Response ok:", response.ok);
+            return response.text();
+        })
+        .then(text => {
+            console.log("Response text:", text);
+            if (text.trim() === "Success") {
                 alert('شكراً لك! تم استلام تقييمك بنجاح، ونحن نقدر وقتك واهتمامك.'); 
                 this.reset();
                 
-                // إعادة تعيين المتغيرات
                 Object.keys(lastSelectedValues).forEach(key => delete lastSelectedValues[key]);
                 pendingReasonQuestion = null;
                 
-                // إخفاء جميع حقول الأسباب
-                document.querySelectorAll('.reason-field').forEach(div => {
-                    div.style.display = 'none';
-                    div.querySelector('input').value = '';
-                    div.querySelector('input').removeAttribute('required');
+                document.querySelectorAll('.reason-row').forEach(row => {
+                    row.style.display = 'none';
+                    const input = row.querySelector('input');
+                    if (input) {
+                        input.value = '';
+                        input.removeAttribute('required');
+                    }
                 });
                 
                 btn.disabled = false;
                 btn.innerHTML = originalBtnText;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-            })
-            .catch(error => {
-                alert('❌ حدث خطأ أثناء الإرسال.');
+            } else {
+                console.error("Server returned:", text);
+                alert('⚠️ تم استلام البيانات لكن هناك مشكلة: ' + text);
                 btn.disabled = false;
                 btn.innerHTML = originalBtnText;
-            });
+            }
+        })
+        .catch(error => {
+            console.error("Fetch error:", error);
+            alert('❌ حدث خطأ أثناء الإرسال: ' + error.message);
+            btn.disabled = false;
+            btn.innerHTML = originalBtnText;
+        });
     });
 </script>
 </body>
